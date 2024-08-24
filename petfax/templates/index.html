@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
     <title>Index</title>
-</head>
-<body>
-    <h1>Welcome to PetFax</h1>
-    {% for pet in pets %}
-        <h2>{{ pet.pet_name }}</h2>
-        <img src="{{ pet.pet_photo }}" alt="Photo of pet"/>
-    {% endfor %}
-</body>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to PetFax</h1>
+
+      <div class="callout">
+        Welcome to PetFax! We are a no-kill shelter dedicated to finding our
+        pets loving homes and educating the public with fun facts.
+      </div>
+
+      <div class="pets-container">
+        {% for pet in pets %}
+        <div class="pet">
+          <h2>{{ pet.pet_name }}</h2>
+          <img src="{{ pet.pet_photo }}" alt="Photo of {{ pet.pet_name }}" />
+          <a href="/pets/{{ pet.pet_id }}">Learn more ></a>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="callout">
+        Got another fun fact about animals?
+        <a href="/facts/new">Submit some here!</a>
+      </div>
+    </div>
+  </body>
 </html>
