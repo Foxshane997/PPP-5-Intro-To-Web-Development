@@ -3,9 +3,14 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
 
-# Index Route with a hello function
+    from . import pet
+    app.register_blueprint(pet.bp)
+
     @app.route('/')
     def hello():
         return 'Hello, PetFax!'
     
     return app
+
+
+
