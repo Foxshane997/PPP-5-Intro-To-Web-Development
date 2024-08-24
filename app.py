@@ -1,14 +1,8 @@
-# Config
-from flask import Flask
-app = Flask(__name__)
+from petfax import create_app
 
+app = create_app()
 
-# Index Route
-@app.route('/')
-def index():
-    return 'Hello, this is a PetFax!'
+if __name__ == '__main__':
+    app.run(debug=True)
 
-# Pets Index route
-@app.route('/pets')
-def pets():
-    return 'These are our pets available for adoption!'
+# Use python app.y in the terminal with the app.run(debug=True)
