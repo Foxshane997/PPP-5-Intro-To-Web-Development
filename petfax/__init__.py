@@ -22,6 +22,3 @@ def create_app():
         return 'Hello, PetFax!'
     
     return app
-
-
-
