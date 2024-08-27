@@ -1,4 +1,4 @@
-from flask import ( Blueprint, render_template, request )
+from flask import ( Blueprint, render_template, request, redirect )
 
 bp = Blueprint('fact', __name__, url_prefix="/facts")
 
@@ -6,7 +6,10 @@ bp = Blueprint('fact', __name__, url_prefix="/facts")
 def new():
     return render_template('facts/new.html')
 
-@bp.route('/', methods=['POST'])
+@bp.route('/', methods=['GET','POST'])
 def index():
-    print(request.form)
-    return 'Thanks for submitting a fun fact!'
+    if request.method == 'POST':
+        print(request.form)
+        return redirect('/facts')
+    
+    return render_template('facts/index.html')
