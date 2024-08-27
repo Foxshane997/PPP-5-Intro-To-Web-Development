@@ -1,16 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
 
-def create_app():
-    app = Flask(__name__)
-
-    from . import pet
-    app.register_blueprint(pet.bp)
-
-    from . import fact
-    app.register_blueprint(fact.bp)
-
-# DataBase
 def create_app(): 
     app = Flask(__name__)
 
@@ -19,7 +9,13 @@ def create_app():
 
     from . import models
     models.db.init_app(app)     
-    migrate = Migrate(app, models.db)      
+    migrate = Migrate(app, models.db)    
+
+    from . import pet
+    app.register_blueprint(pet.bp)
+
+    from . import fact
+    app.register_blueprint(fact.bp)  
 
     @app.route('/')
     def hello():
